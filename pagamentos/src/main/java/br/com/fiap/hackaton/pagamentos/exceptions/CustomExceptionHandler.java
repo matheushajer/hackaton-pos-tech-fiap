@@ -1,4 +1,4 @@
-package br.com.fiap.hackaton.cartoes.exceptions;
+package br.com.fiap.hackaton.pagamentos.exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -71,18 +71,17 @@ public class CustomExceptionHandler {
 
     }
 
-    @ExceptionHandler(PaymentRequiredException.class)
-    public ResponseEntity<CustomErrorResponse> handlePaymentRequiredExceptions(PaymentRequiredException ex) {
+    @ExceptionHandler(ServiceCartoesException.class)
+    public ResponseEntity<CustomErrorResponse> handleCartoesExceptions(ServiceCartoesException ex) {
 
         String mensagem = ex.getMessage();
         LocalDateTime timestamp = LocalDateTime.now();
-        int status = HttpStatus.PAYMENT_REQUIRED.value();
+        int status = ex.getStatus();
 
         CustomErrorResponse errorResponse = new CustomErrorResponse(timestamp, mensagem, status);
 
-        return ResponseEntity.status(HttpStatus.PAYMENT_REQUIRED).body(errorResponse);
+        return ResponseEntity.status(ex.getStatus()).body(errorResponse);
 
     }
-
 
 }

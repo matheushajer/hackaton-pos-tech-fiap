@@ -6,23 +6,11 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
-/**
- * Classe DTO para receber os dados vindos pela API usado na criação de um cartão.
- *
- * @param cpf
- * @param limite
- * @param numero
- * @param data_validade
- * @param cvv
- */
-public record DadosCriacaoCartaoDTO(
+public record DadosEfetuarCompraDTO(
 
         @NotBlank(message = "O CPF do cliente é obrigatório")
         @Size(min = 11, max = 11, message = "O CPF deve conter 11 digitos")
         String cpf,
-
-        @NotNull(message = "O limite do cartão é obrigatório")
-        BigDecimal limite,
 
         @NotBlank(message = "O numero do cartão é obrigatório")
         @Size(min = 16, max = 16, message = "O número do cartão deve  conter 16 digitos")
@@ -34,6 +22,9 @@ public record DadosCriacaoCartaoDTO(
 
         @NotBlank(message = "O código de segurança do cartão é obrigatório")
         @Size(min = 3, max = 3, message = "Código de segurança deve conter 3 digitos")
-        String cvv
+        String cvv,
+
+        @NotNull(message = "Valor da compra é obrigatório")
+        BigDecimal valor
 ) {
 }

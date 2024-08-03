@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CartaoRepository extends JpaRepository<CartaoEntity, Long> {
 
@@ -14,5 +16,7 @@ public interface CartaoRepository extends JpaRepository<CartaoEntity, Long> {
 
     @Query("SELECT COUNT(c) FROM CartaoEntity c WHERE c.numero = :numero")
     long countByNumero(@Param("numero") String numero);
+
+    List<CartaoEntity> findByCpf(String cpf);
 
 }
