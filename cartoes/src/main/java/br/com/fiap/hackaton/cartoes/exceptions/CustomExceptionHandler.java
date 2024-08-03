@@ -1,4 +1,4 @@
-package br.com.fiap.hackaton.clientes.exceptions;
+package br.com.fiap.hackaton.cartoes.exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.nio.file.AccessDeniedException;
 import java.time.LocalDateTime;
 
 /**
@@ -55,6 +56,19 @@ public class CustomExceptionHandler {
         CustomErrorResponse errorResponse = new CustomErrorResponse(timestamp, mensagem, status);
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<CustomErrorResponse> handleAccessDeniedExceptions(AccessDeniedException ex) {
+
+        String mensagem = ex.getMessage();
+        LocalDateTime timestamp = LocalDateTime.now();
+        int status = HttpStatus.FORBIDDEN.value();
+
+        CustomErrorResponse errorResponse = new CustomErrorResponse(timestamp, mensagem, status);
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
+
     }
 
 }

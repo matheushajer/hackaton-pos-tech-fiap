@@ -1,6 +1,7 @@
 package br.com.fiap.hackaton.clientes.records;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 /**
  * Classe DTO para representar os dados vindos pela API POST /clientes
@@ -20,6 +21,7 @@ public record DadosCriacaoClienteDTO(
         @NotBlank(message = "É Obrigatório informar o nome do cliente")
         String nome,
         @NotBlank(message = "É Obrigatório informar o cpf do cliente")
+        @Size(min = 11, max = 11, message = "O CPF deve conter 11 digitos")
         String cpf,
         @NotBlank(message = "É Obrigatório informar o e-mail do cliente")
         String email,
