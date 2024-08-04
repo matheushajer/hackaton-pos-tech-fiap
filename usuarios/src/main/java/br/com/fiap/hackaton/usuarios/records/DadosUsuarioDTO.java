@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Size;
  * @param login
  * @param senha
  */
-public record DadosCriacaoUsuarioDTO(
+public record DadosUsuarioDTO(
 
         @NotBlank(message = "O login do usuário é obrigatório!")
         @Size(min = 5, message = "O login deve conter no minimo 5 caracteres!")
