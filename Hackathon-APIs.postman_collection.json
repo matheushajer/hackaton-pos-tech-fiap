@@ -1,0 +1,225 @@
+{
+	"info": {
+		"_postman_id": "a627191e-62c5-4d5a-86f6-1b0bbf26d671",
+		"name": "Hackathon-APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28808909",
+		"_collection_link": "https://www.postman.com/universal-resonance-537924/workspace/hackathon/collection/28808909-a627191e-62c5-4d5a-86f6-1b0bbf26d671?action=share&source=collection_link&creator=28808909"
+	},
+	"item": [
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Registrar  Cliente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cpf\": \"11111111114\",\r\n    \"nome\": \"João da Silva\",\r\n    \"email\": \"joao@example.com\",\r\n    \"telefone\": \"+55 11 91234-5678\",\r\n    \"rua\": \"Rua A\",\r\n    \"cidade\": \"Cidade\",\r\n    \"estado\": \"Estado\",\r\n    \"cep\": \"12345-678\",\r\n    \"pais\": \"Brasil\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8082/clientes/clientes/cliente",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"clientes",
+										"clientes",
+										"cliente"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "APIs para outros serviços",
+					"item": [
+						{
+							"name": "Existe Cliente By Cpf",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8082/clientes/clientes/existe-cliente/1111111111",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"clientes",
+										"clientes",
+										"existe-cliente",
+										"1111111111"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cartoes",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Gerar Cartão",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"cpf\": \"11111111113\",\r\n\t\"limite\": 10000,\r\n\t\"numero\": \"1234567890121234\",\r\n\t\"data_validade\": \"12/24\",\r\n\t\"cvv\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8082/cartoes/cartoes/cartao",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cartoes",
+										"cartoes",
+										"cartao"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "APIs para outros serviços",
+					"item": [
+						{
+							"name": "Efetuar Compra",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"cpf\": \"11111111112\",\r\n\t\"numero\": \"1234567890121234\",\r\n\t\"data_validade\": \"12/24\",\r\n\t\"cvv\": \"123\",\r\n\t\"valor\": 500\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8082/cartoes/cartoes/efetuar-compra",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cartoes",
+										"cartoes",
+										"efetuar-compra"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Pagamentos",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Criar Pagamento",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"cpf\": \"11111111113\",\r\n\t\"numero\": \"1234567890121234\",\r\n\t\"data_validade\": \"12/24\",\r\n\t\"cvv\": \"123\",\r\n\t\"valor\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8082/pagamentos/pagamentos",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"pagamentos",
+										"pagamentos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Consultar Pagamentos Por Cpf",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8082/pagamentos/pagamentos/cliente/11111111113",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"pagamentos",
+										"pagamentos",
+										"cliente",
+										"11111111113"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
