@@ -6,6 +6,16 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
+/**
+ * Classe DTO para manipular os dados de uma tentativa de compra.
+ * É usado pela API fornecida ao serviço de pagamentos.
+ *
+ * @param cpf
+ * @param numero
+ * @param data_validade
+ * @param cvv
+ * @param valor
+ */
 public record DadosEfetuarCompraDTO(
 
         @NotBlank(message = "O CPF do cliente é obrigatório")

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.nio.file.AccessDeniedException;
 
 /**
- * Classe controller das operações de cartão.
+ * Classe controller das operações do serviço cartoes.
  */
 @RestController
 @RequestMapping("/cartoes")
@@ -23,6 +23,14 @@ public class CartaoController {
     @Autowired
     EfetuarCompraUseCase efetuarPagamentoUseCase;
 
+    /**
+     * Endpoint para recibimento da solicitação de criação de um novo cartão no sistema.
+     *
+     * @param dadosCriacaoCartaoDTO Objeto com os dados para criação do cartão.
+     * @return Retorna apens status 200 - OK.
+     * @throws AccessDeniedException Exception lançada caso regra a regra de negicio de limite de cartões
+     *                               por cliente seja quebrada.
+     */
     @PostMapping("/cartao")
     public ResponseEntity gerarCartao(@RequestBody @Validated DadosCriacaoCartaoDTO dadosCriacaoCartaoDTO) throws AccessDeniedException {
 
@@ -32,6 +40,13 @@ public class CartaoController {
 
     }
 
+    /**
+     * Endpoint exclusivo para o serviço de pagamentos, efetua a validação de limite e aprovação da compra.
+     *
+     * @param dadosEfetuarCompraDTO Objeto com os dados para pagamento.
+     * @return Retorna true or false caso o pagamento tenha sido efetuado com sucesso.
+     * @throws AccessDeniedException Exception lanaçada caso o cartão informado não tenha limite para pagamento.
+     */
     @PutMapping("/efetuar-compra")
     public ResponseEntity<Boolean> efetuarCompra(@RequestBody @Validated DadosEfetuarCompraDTO dadosEfetuarCompraDTO) throws AccessDeniedException {
 

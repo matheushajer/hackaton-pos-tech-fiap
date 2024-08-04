@@ -19,6 +19,12 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
+    /**
+     * Método para retorno de exception personalidado em caso de MethodArgumentNotValidException.
+     *
+     * @param ex Objeto exception que será manipulado.
+     * @return Retorna um CustomErrorResponse, com os dados tratados do erro.
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<CustomErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
 
@@ -34,6 +40,12 @@ public class CustomExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 
+    /**
+     * Método para retorno de exception personalidado em caso de IllegalArgumentException.
+     *
+     * @param ex Objeto exception que será manipulado.
+     * @return Retorna um CustomErrorResponse, com os dados tratados do erro.
+     */
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<CustomErrorResponse> handleIllegalArgumentExceptions(IllegalArgumentException ex) {
 
@@ -46,6 +58,12 @@ public class CustomExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 
+    /**
+     * Método para retorno de exception personalidado em caso de EntityNotFoundException.
+     *
+     * @param ex Objeto exception que será manipulado.
+     * @return Retorna um CustomErrorResponse, com os dados tratados do erro.
+     */
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<CustomErrorResponse> handleEntityNotFoundExceptions(EntityNotFoundException ex) {
 
@@ -58,6 +76,12 @@ public class CustomExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 
+    /**
+     * Método para retorno de exception personalidado em caso de AccessDeniedException.
+     *
+     * @param ex Objeto exception que será manipulado.
+     * @return Retorna um CustomErrorResponse, com os dados tratados do erro.
+     */
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<CustomErrorResponse> handleAccessDeniedExceptions(AccessDeniedException ex) {
 
@@ -71,6 +95,12 @@ public class CustomExceptionHandler {
 
     }
 
+    /**
+     * Método para retorno de exception personalidado em caso de PaymentRequiredException.
+     *
+     * @param ex Objeto exception que será manipulado.
+     * @return Retorna um CustomErrorResponse, com os dados tratados do erro.
+     */
     @ExceptionHandler(PaymentRequiredException.class)
     public ResponseEntity<CustomErrorResponse> handlePaymentRequiredExceptions(PaymentRequiredException ex) {
 

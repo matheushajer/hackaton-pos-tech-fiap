@@ -5,7 +5,8 @@ import br.com.fiap.hackaton.cartoes.records.DadosCriacaoCartaoDTO;
 import org.springframework.stereotype.Service;
 
 /**
- *
+ * Classe adapter para tratamento de dados recebidos ou enviados para APIs, relacionados
+ * ao objeto CartaoEntity e DTOs.
  */
 @Service
 public class CartaoAdapter {

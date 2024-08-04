@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient("clientes")
 public interface ClienteClient {
 
+    /**
+     * Método para efetuar uma chamada ao service de cliente.
+     *
+     * @param cpf CPF do cliente que será validado.
+     * @return Retorna true or false caso o cliente exista no sistema.
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/clientes/existe-cliente/{cpf}")
     boolean existeCliente(@PathVariable String cpf);
 

@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * Classe para representar uma entidade cartão no sistema.
+ */
 @Entity
 @Data
 @Table(name = "tb_cartoes")
