@@ -1,0 +1,73 @@
+version: "3.8"
+
+networks:
+  hackaton-fiap_net:
+
+services:
+  postgres:
+    image: yuriesena/hackaton-fiap:postgres
+    ports:
+      - "5433:5433"
+    networks:
+      - hackaton-fiap_net
+
+  server:
+    image: yuriesena/hackaton-fiap:server
+    depends_on:
+      - postgres
+    networks:
+      - hackaton-fiap_net
+    ports:
+      - "8081:8081"
+
+  gateway:
+    image: yuriesena/hackaton-fiap:gateway
+    ports:
+      - "8082:8082"
+    depends_on:
+      - usuarios
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://server:8081/eureka
+    networks:
+      - hackaton-fiap_net
+
+  cartoes:
+    image: yuriesena/hackaton-fiap:cartoes
+    depends_on:
+      - server
+    networks:
+      - hackaton-fiap_net
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5433/cartoes
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://server:8081/eureka
+
+
+  clientes:
+    image: yuriesena/hackaton-fiap:clientes
+    depends_on:
+      - cartoes
+    networks:
+      - hackaton-fiap_net
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5433/clientes
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://server:8081/eureka
+
+  pagamentos:
+    image: yuriesena/hackaton-fiap:pagamentos
+    depends_on:
+      - clientes
+    networks:
+      - hackaton-fiap_net
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5433/pagamentos
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://server:8081/eureka
+
+  usuarios:
+    image: yuriesena/hackaton-fiap:usuarios
+    depends_on:
+      - pagamentos
+    networks:
+      - hackaton-fiap_net
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5433/usuarios
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://server:8081/eureka
