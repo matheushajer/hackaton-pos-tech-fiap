@@ -12,7 +12,79 @@ Desenvolver um sistema eficiente para o processamento de pagamentos de operadora
 
 ## 📑 Documentação da API
 
-########
+### Usuários
+
+- **POST Efetuar Login**: `POST localhost:8082/usuarios/autenticacao`
+    - Efetua login do usuário com as credenciais fornecidas.
+    - **Corpo da Requisição**:
+      ```json
+      {
+        "login": "admin",
+        "senha": "admin"
+      }
+      ```
+
+- **POST Criar Usuário**: `POST localhost:8082/usuarios/usuarios/criar-usuario`
+    - Cria um novo usuário no sistema.
+    - **Corpo da Requisição**:
+      ```json
+      {
+        "login": "admin",
+        "senha": "admin"
+      }
+      ```
+
+### Cliente
+
+- **POST Registrar Cliente**: `POST localhost:8082/clientes/clientes/cliente`
+    - Registra um novo cliente no sistema.
+    - **Corpo da Requisição**:
+      ```json
+      {
+        "cpf": "11111111115",
+        "nome": "João da Silva",
+        "email": "joao@example.com",
+        "telefone": "+55 11 91234-5678",
+        "rua": "Rua A",
+        "cidade": "Cidade",
+        "estado": "Estado",
+        "cep": "12345-678",
+        "pais": "Brasil"
+      }
+      ```
+
+### Cartões
+
+- **POST Gerar Cartão**: `POST localhost:8082/cartoes/cartoes/cartao`
+    - Gera um novo cartão de crédito para o cliente.
+    - **Corpo da Requisição**:
+      ```json
+      {
+        "cpf": "11111111115",
+        "limite": 10000,
+        "numero": "1234567890121234",
+        "data_validade": "12/24",
+        "cvv": "123"
+      }
+      ```
+
+### Pagamentos
+
+- **POST Criar Pagamento**: `POST localhost:8082/pagamentos/pagamentos`
+    - Cria um novo pagamento utilizando o cartão de crédito do cliente.
+    - **Corpo da Requisição**:
+      ```json
+      {
+        "cpf": "11111111115",
+        "numero": "1234567890121234",
+        "data_validade": "12/24",
+        "cvv": "123",
+        "valor": 100
+      }
+      ```
+
+- **GET Consultar Pagamentos Por CPF**: `GET localhost:8082/pagamentos/pagamentos/cliente/{cpf}`
+    - Consulta todos os pagamentos associados a um CPF específico.
 
 ## 🚀 Deploy
 
