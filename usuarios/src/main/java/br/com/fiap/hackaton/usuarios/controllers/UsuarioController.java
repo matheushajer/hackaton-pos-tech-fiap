@@ -22,12 +22,11 @@ public class UsuarioController {
     /**
      * Endpoint responsavel por criar um usuário no sistema.
      *
-     * @param dadosUsuarioDTO
+     * @param dadosUsuarioDTO Objeto com os dados para criação do usuário.
      */
     @PostMapping("/criar-usuario")
     public void criarUsuario(@RequestBody @Validated DadosUsuarioDTO dadosUsuarioDTO) {
         criarUsuarioUseCase.criarUsuario(dadosUsuarioDTO);
     }
-
 
 }

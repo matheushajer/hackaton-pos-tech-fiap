@@ -29,4 +29,9 @@ public class CustomErrorResponse {
         this.status = status;
     }
 
+    public CustomErrorResponse(LocalDateTime timestamp, String mensagem) {
+        this.timestamp = timestamp;
+        this.mensagem = mensagem;
+    }
+
 }

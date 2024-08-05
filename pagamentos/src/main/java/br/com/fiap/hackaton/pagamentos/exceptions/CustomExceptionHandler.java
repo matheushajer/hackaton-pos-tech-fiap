@@ -3,12 +3,13 @@ package br.com.fiap.hackaton.pagamentos.exceptions;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.nio.file.AccessDeniedException;
 import java.time.LocalDateTime;
 
 /**
@@ -58,19 +59,6 @@ public class CustomExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 
-    @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<CustomErrorResponse> handleAccessDeniedExceptions(AccessDeniedException ex) {
-
-        String mensagem = ex.getMessage();
-        LocalDateTime timestamp = LocalDateTime.now();
-        int status = HttpStatus.FORBIDDEN.value();
-
-        CustomErrorResponse errorResponse = new CustomErrorResponse(timestamp, mensagem, status);
-
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
-
-    }
-
     @ExceptionHandler(ServiceCartoesException.class)
     public ResponseEntity<CustomErrorResponse> handleCartoesExceptions(ServiceCartoesException ex) {
 
@@ -82,6 +70,30 @@ public class CustomExceptionHandler {
 
         return ResponseEntity.status(ex.getStatus()).body(errorResponse);
 
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<CustomErrorResponse> handleAccessDeniedExceptions(AccessDeniedException ex) {
+
+        String mensagem = ex.getMessage();
+        LocalDateTime timestamp = LocalDateTime.now();
+
+        CustomErrorResponse errorResponse = new CustomErrorResponse(timestamp, mensagem);
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<CustomErrorResponse> handleBadCredentialsExceptions(BadCredentialsException ex) {
+
+        String mensagem = ex.getMessage();
+        LocalDateTime timestamp = LocalDateTime.now();
+        int status = HttpStatus.UNAUTHORIZED.value();
+
+        CustomErrorResponse errorResponse = new CustomErrorResponse(timestamp, mensagem, status);
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
     }
 
 }
