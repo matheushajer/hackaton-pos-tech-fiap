@@ -8,6 +8,78 @@
 	},
 	"item": [
 		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Autenticacao",
+					"item": [
+						{
+							"name": "Efetuar Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"login\": \"admin\",\r\n    \"senha\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8082/usuarios/autenticacao",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"usuarios",
+										"autenticacao"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST - EXTRA - Criar Usuario",
+					"item": [
+						{
+							"name": "EXTRA - Criar Usuario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"login\": \"admin\",\r\n    \"senha\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8082/usuarios/usuarios/criar-usuario",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"usuarios",
+										"usuarios",
+										"criar-usuario"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Cliente",
 			"item": [
 				{
@@ -39,7 +111,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"cpf\": \"11111111114\",\r\n    \"nome\": \"João da Silva\",\r\n    \"email\": \"joao@example.com\",\r\n    \"telefone\": \"+55 11 91234-5678\",\r\n    \"rua\": \"Rua A\",\r\n    \"cidade\": \"Cidade\",\r\n    \"estado\": \"Estado\",\r\n    \"cep\": \"12345-678\",\r\n    \"pais\": \"Brasil\"\r\n}",
+							"raw": "{\r\n    \"cpf\": \"11111111115\",\r\n    \"nome\": \"João da Silva\",\r\n    \"email\": \"joao@example.com\",\r\n    \"telefone\": \"+55 11 91234-5678\",\r\n    \"rua\": \"Rua A\",\r\n    \"cidade\": \"Cidade\",\r\n    \"estado\": \"Estado\",\r\n    \"cep\": \"12345-678\",\r\n    \"pais\": \"Brasil\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -69,11 +141,21 @@
 				{
 					"name": "Gerar Cartão",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"cpf\": \"11111111113\",\r\n\t\"limite\": 10000,\r\n\t\"numero\": \"1234567890121234\",\r\n\t\"data_validade\": \"12/24\",\r\n\t\"cvv\": \"123\"\r\n}",
+							"raw": "{\r\n\t\"cpf\": \"11111111115\",\r\n\t\"limite\": 10000,\r\n\t\"numero\": \"1234567890121234\",\r\n\t\"data_validade\": \"12/24\",\r\n\t\"cvv\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -106,11 +188,21 @@
 						{
 							"name": "Criar Pagamento",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"cpf\": \"11111111113\",\r\n\t\"numero\": \"1234567890121234\",\r\n\t\"data_validade\": \"12/24\",\r\n\t\"cvv\": \"123\",\r\n\t\"valor\": 100\r\n}",
+									"raw": "{\r\n\t\"cpf\": \"11111111115\",\r\n\t\"numero\": \"1234567890121234\",\r\n\t\"data_validade\": \"12/24\",\r\n\t\"cvv\": \"123\",\r\n\t\"valor\": 100\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -159,7 +251,7 @@
 									}
 								],
 								"url": {
-									"raw": "localhost:8082/pagamentos/pagamentos/cliente/11111111113",
+									"raw": "localhost:8082/pagamentos/pagamentos/cliente/11111111115",
 									"host": [
 										"localhost"
 									],
@@ -168,79 +260,7 @@
 										"pagamentos",
 										"pagamentos",
 										"cliente",
-										"11111111113"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Usuarios",
-			"item": [
-				{
-					"name": "Autenticacao",
-					"item": [
-						{
-							"name": "Efetuar Login",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"login\": \"teste\",\r\n    \"senha\": \"1234\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8082/usuarios/autenticacao",
-									"host": [
-										"localhost"
-									],
-									"port": "8082",
-									"path": [
-										"usuarios",
-										"autenticacao"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "POST - EXTRA - Criar Usuario",
-					"item": [
-						{
-							"name": "EXTRA - Criar Usuario",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"login\": \"teste\",\r\n    \"senha\": \"1234\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8082/usuarios/usuarios/criar-usuario",
-									"host": [
-										"localhost"
-									],
-									"port": "8082",
-									"path": [
-										"usuarios",
-										"usuarios",
-										"criar-usuario"
+										"11111111115"
 									]
 								}
 							},
