@@ -11,39 +11,6 @@
 			"name": "Usuarios",
 			"item": [
 				{
-					"name": "Autenticacao",
-					"item": [
-						{
-							"name": "Efetuar Login",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"login\": \"admin\",\r\n    \"senha\": \"admin\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8082/usuarios/autenticacao",
-									"host": [
-										"localhost"
-									],
-									"port": "8082",
-									"path": [
-										"usuarios",
-										"autenticacao"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "POST - EXTRA - Criar Usuario",
 					"item": [
 						{
@@ -70,6 +37,39 @@
 										"usuarios",
 										"usuarios",
 										"criar-usuario"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Autenticacao",
+					"item": [
+						{
+							"name": "Efetuar Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"login\": \"admin\",\r\n    \"senha\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8082/usuarios/autenticacao",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"usuarios",
+										"autenticacao"
 									]
 								}
 							},
