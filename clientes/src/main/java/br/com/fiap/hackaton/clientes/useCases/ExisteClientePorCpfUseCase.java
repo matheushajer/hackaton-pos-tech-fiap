@@ -17,7 +17,7 @@ public class ExisteClientePorCpfUseCase {
 
     public boolean existeClieteByCpf(String cpf) {
 
-        if (cpf.isEmpty()) {
+        if (cpf == null || cpf.isEmpty()) {
             throw new IllegalArgumentException("O CPF informado está vazio ou nulo.");
         }
 
