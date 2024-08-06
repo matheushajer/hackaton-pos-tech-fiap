@@ -1,7 +1,7 @@
 package br.com.fiap.hackaton.pagamentos.useCases;
 
 import br.com.fiap.hackaton.pagamentos.adapters.PagamentoAdapter;
-import br.com.fiap.hackaton.pagamentos.entities.PagamentoEntitty;
+import br.com.fiap.hackaton.pagamentos.entities.PagamentoEntity;
 import br.com.fiap.hackaton.pagamentos.entities.enuns.StatusPagamentoEnum;
 import br.com.fiap.hackaton.pagamentos.exceptions.ServiceCartoesException;
 import br.com.fiap.hackaton.pagamentos.http.CartaoClient;
@@ -38,20 +38,20 @@ public class CriarPagamentoUseCase {
      */
     public String criarRegistroDePagamento(DadosCriacaoPagamentoDTO dadosCriacaoPagamentoDTO) {
 
-        PagamentoEntitty pagamentoEntitty = pagamentoAdapter.converterParaEntity(dadosCriacaoPagamentoDTO);
+        PagamentoEntity pagamentoEntity = pagamentoAdapter.converterParaEntity(dadosCriacaoPagamentoDTO);
 
         try {
             if (cartaoClient.efetuarCompra(dadosCriacaoPagamentoDTO)) {
-                pagamentoEntitty.setStatusPagamento(StatusPagamentoEnum.APROVADO);
+                pagamentoEntity.setStatusPagamento(StatusPagamentoEnum.APROVADO);
             }
         } catch (FeignException e) {
             String errorMessage = extractErrorMessage(e.contentUTF8());
             throw new ServiceCartoesException(errorMessage, e.status());
         }
 
-        pagamentoRepository.save(pagamentoEntitty);
+        pagamentoRepository.save(pagamentoEntity);
 
-        return "chave_pagamento: " + pagamentoEntitty.getId();
+        return "chave_pagamento: " + pagamentoEntity.getId();
 
     }
 

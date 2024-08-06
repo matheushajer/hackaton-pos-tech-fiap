@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Entity
 @Data
 @Table(name = "tb_pagamentos")
-public class PagamentoEntitty {
+public class PagamentoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,10 +37,10 @@ public class PagamentoEntitty {
     // Construtores
     // **************
 
-    public PagamentoEntitty() {
+    public PagamentoEntity() {
     }
 
-    public PagamentoEntitty(String cpf, String numero, String dataValidade, String cvv, BigDecimal valorCompra) {
+    public PagamentoEntity(String cpf, String numero, String dataValidade, String cvv, BigDecimal valorCompra) {
         this.cpf = cpf;
         this.numero = numero;
         this.dataValidade = dataValidade;

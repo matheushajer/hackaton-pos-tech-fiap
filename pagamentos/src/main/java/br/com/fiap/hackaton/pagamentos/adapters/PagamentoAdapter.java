@@ -1,12 +1,9 @@
 package br.com.fiap.hackaton.pagamentos.adapters;
 
-import br.com.fiap.hackaton.pagamentos.entities.PagamentoEntitty;
+import br.com.fiap.hackaton.pagamentos.entities.PagamentoEntity;
 import br.com.fiap.hackaton.pagamentos.records.DadosConsultaPagamentoPorCpf;
 import br.com.fiap.hackaton.pagamentos.records.DadosCriacaoPagamentoDTO;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Classe adapter para efetuar o tratamento de dados vindo pelas APIs do serviço de pagamentos.
@@ -20,9 +17,9 @@ public class PagamentoAdapter {
      * @param dadosCriacaoPagamentoDTO Objeto com os dados a serem convertidos.
      * @return PagamentoEntitty Objeto com os dados convertidos e tratados.
      */
-    public PagamentoEntitty converterParaEntity(DadosCriacaoPagamentoDTO dadosCriacaoPagamentoDTO) {
+    public PagamentoEntity converterParaEntity(DadosCriacaoPagamentoDTO dadosCriacaoPagamentoDTO) {
 
-        return new PagamentoEntitty(
+        return new PagamentoEntity(
                 dadosCriacaoPagamentoDTO.cpf(),
                 dadosCriacaoPagamentoDTO.numero(),
                 dadosCriacaoPagamentoDTO.data_validade(),
@@ -40,7 +37,7 @@ public class PagamentoAdapter {
      * @return Retorna uma lista de DadosConsultaPagamentoPorCpf, com os dados tratados para retorno.
      */
 
-    public DadosConsultaPagamentoPorCpf converterParaDadosConsultaPorCpf(PagamentoEntitty entitty) {
+    public DadosConsultaPagamentoPorCpf converterParaDadosConsultaPorCpf(PagamentoEntity entitty) {
         return new DadosConsultaPagamentoPorCpf(
                 entitty.getValorCompra(),
                 entitty.getDescricao(),
